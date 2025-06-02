@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+*{
+    font-family: 'ubuntu' ,sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-color: black;
+}
+
+main{
+    height:100vh;
+    padding: 50px auto;
+}
+h2{scale: 1.4;}
+.container{
+    width: 90%;
+    max-width: 1100px;
+    height: 60%;
+    color: white;
+}
+.container h1{
+    font-size:55px;
+    position: relative;
+}
+.container h1::after{
+   content: '';
+   position: absolute;
+   left: 0;
+   height: 100%;
+   background-color: rgb(0, 0, 0);
+   animation: slidemotion ease-in 1s
+}
+
+.container.flex{
+    flex-direction: column;
+    gap: 60px;
+}
+.controls.flex{
+    gap:25px;
+    width: 80%;
+}
+.controls{
+    margin-top: 30px;
+}
+.timer{
+    padding: auto 20px;
+}
+.timer.flex{
+    gap:30px;
+}
+button{
+    border: none;
+        color: white;
+        font-size: 20px;
+    transition: 0.1s;
+    cursor: pointer;
+}
+button:hover{
+    opacity:0.7;
+}
+
+.time-selector.flex{
+    gap: 20px;
+}
+.time-selector select{
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 7px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.activity{
+    scale: 1.2;
+}
+@media (max-width:600px){
+.container h1{
+    font-size:40px;
+    text-wrap: nowrap;
+}
+.timer .card{
+    width: 150px;
+    height:150px;
+}
+.timer.flex{
+    gap:20px;
+}
+}

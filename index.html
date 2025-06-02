@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Your Promodoro Timer</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="utilities.css">
+  </head>
+  <body>
+<main class="flex">
+    <div class="container flex">
+        <h1>Promodoro Timer</h1>
+        <h2 class="activity">Current activity : <sapn id="activity">---</sapn></h2>
+        <div class="timer flex">
+            <div id="card" class="card flex" ><h2 id="minutes">25</h2></div>
+            <div><p style="font-size:80px; font-weight: 700;">:</p></div>
+            <div id="card" class="card flex" ><h2 id="seconds">00</h2></div>
+        </div>
+        <div class="time-selector flex" style="color: white;">
+            <p style="font-size: 20px;">Select your Time :</p>
+            <select id="selectsection">
+                
+                <option value="1500">25 min</option>
+                <option value="1800">30 min</option>
+                <option value="2700">45 min</option>
+                <option value="3600">1 hour</option>
+
+            </select>
+        </div>
+        <div class="controls flex">
+            <button style="background-color: green;" id="start" class="btn">
+                Start
+            </button>
+            <button style="background-color: rgb(223, 27, 27);" id="stop" class="btn">
+                Stop
+            </button>
+            <button id="reset" class="btn" style="background-color: grey; color: black;">
+                Reset
+            </button>
+        </div>
+    </div>
+</main>
+
+<script src="main.js">
+
+</script>
+  </body>
+</html>

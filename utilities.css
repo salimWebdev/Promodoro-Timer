@@ -1,0 +1,27 @@
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.btn{
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.card{
+    font-size: 40px;
+    border-radius: 20%;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    width:200px;
+    transition: 1s;
+}
+@keyframes slidemotion{
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0%;
+    }
+}
