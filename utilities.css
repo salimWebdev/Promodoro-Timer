@@ -1,27 +1,56 @@
-.flex{
+.flex {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
-.btn{
+
+.btn {
     padding: 15px 20px;
     border-radius: 10px;
     text-align: center;
+    min-width: 120px;
 }
-.card{
-    font-size: 40px;
-    border-radius: 20%;
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
+
+.card {
+    font-size: 60px;
+    font-weight: bold;
+    border-radius: 20px;
+    color: #333;
+    background: white;
     height: 200px;
-    width:200px;
-    transition: 1s;
+    width: 200px;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-@keyframes slidemotion{
-    0%{
+
+@keyframes slidemotion {
+    0% {
         width: 100%;
     }
-    100%{
+    100% {
         width: 0%;
     }
+}
+
+/* Pulse animation for warning state */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
+
+.warning {
+    animation: pulse 1.5s infinite;
 }
