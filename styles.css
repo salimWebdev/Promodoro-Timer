@@ -1,93 +1,156 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-*{
-    font-family: 'ubuntu' ,sans-serif;
+
+* {
+    font-family: 'Ubuntu', sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
     padding: 0;
     margin: 0;
-    background-color: black;
+    background: black;
+    color: white;
+    min-height: 100vh;
 }
 
-main{
-    height:100vh;
+main {
+    height: 100vh;
     padding: 50px auto;
 }
-h2{scale: 1.4;}
-.container{
+
+h2 {
+    scale: 1.4;
+}
+
+.container {
     width: 90%;
     max-width: 1100px;
     height: 60%;
     color: white;
-}
-.container h1{
-    font-size:55px;
-    position: relative;
-}
-.container h1::after{
-   content: '';
-   position: absolute;
-   left: 0;
-   height: 100%;
-   background-color: rgb(0, 0, 0);
-   animation: slidemotion ease-in 1s
+    text-align: center;
 }
 
-.container.flex{
+.container h1 {
+    font-size: 55px;
+    position: relative;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container.flex {
     flex-direction: column;
-    gap: 60px;
+    gap: 40px;
 }
-.controls.flex{
-    gap:25px;
+
+.controls.flex {
+    gap: 25px;
     width: 80%;
+    flex-wrap: wrap;
 }
-.controls{
+
+.controls {
     margin-top: 30px;
 }
-.timer{
+
+.timer {
     padding: auto 20px;
 }
-.timer.flex{
-    gap:30px;
+
+.timer.flex {
+    gap: 30px;
 }
-button{
+
+button {
     border: none;
-        color: white;
-        font-size: 20px;
-    transition: 0.1s;
-    cursor: pointer;
-}
-button:hover{
-    opacity:0.7;
-}
-
-.time-selector.flex{
-    gap: 20px;
-}
-.time-selector select{
-    background-color: black;
     color: white;
-    border: 2px solid white;
-    padding: 7px;
     font-size: 20px;
-    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.activity{
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#start {
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+}
+
+#stop {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+#reset {
+    background: linear-gradient(135deg, #757f9a, #d7dde8);
+    color: #333;
+}
+
+.time-selector.flex {
+    gap: 20px;
+    align-items: center;
+}
+
+.time-selector select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-selector select:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.time-selector select:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.3);
+}
+
+.activity {
     scale: 1.2;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
-@media (max-width:600px){
-.container h1{
-    font-size:40px;
-    text-wrap: nowrap;
-}
-.timer .card{
-    width: 150px;
-    height:150px;
-}
-.timer.flex{
-    gap:20px;
-}
+
+@media (max-width: 600px) {
+    .container h1 {
+        font-size: 40px;
+    }
+    
+    .timer .card {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .timer.flex {
+        gap: 15px;
+    }
+    
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    .time-selector.flex {
+        flex-direction: column;
+    }
 }
