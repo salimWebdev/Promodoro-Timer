@@ -1,17 +1,15 @@
-const start = document.getElementById('start');
-const stop = document.getElementById('stop');
-const reset = document.getElementById('reset');
+const startBtn = document.getElementById('start');
+const stopBtn = document.getElementById('stop');
+const resetBtn = document.getElementById('reset');
 const minutes = document.getElementById('minutes');
 const seconds = document.getElementById('seconds');
-const cards = document.querySelectorAll('.card');
-const selectsection = document.getElementById('selectsection');
+const selectSection = document.getElementById('selectsection');
 const activity = document.getElementById('activity');
+const timerCards = document.querySelectorAll('.card');
 
-// Audio for notifications
 const timerSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3');
 const breakSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3');
 
-// Timer states
 const TimerState = {
     STOPPED: 'stopped',
     RUNNING: 'running',
@@ -20,75 +18,57 @@ const TimerState = {
 };
 
 let state = TimerState.STOPPED;
-let leftTime = 1500;
-let finalleftTime = 1500;
+let workDuration = 1500;
+let timeLeft = workDuration;
+let breakDuration = 300;
 let interval = null;
-let restInterval = null;
-let restTime = 300; // 5 minutes break by default
 
-// Update time selection
-selectsection.addEventListener('change', (event) => {
+selectSection.addEventListener('change', (e) => {
     if (state === TimerState.RUNNING || state === TimerState.BREAK) return;
-    
-    finalleftTime = parseInt(event.target.value);
-    leftTime = finalleftTime;
-    updateDisplay();
-    resetTimerColors();
+    workDuration = parseInt(e.target.value);
+    timeLeft = workDuration;
+    updateDisplay(timeLeft);
+    resetColors();
 });
 
-function updateDisplay() {
-    const mins = Math.floor(leftTime / 60).toString().padStart(2, "0");
-    const secs = (leftTime % 60).toString().padStart(2, "0");
+function updateDisplay(time) {
+    const mins = Math.floor(time / 60).toString().padStart(2, '0');
+    const secs = (time % 60).toString().padStart(2, '0');
     minutes.textContent = mins;
     seconds.textContent = secs;
 }
 
-function updateBreakDisplay() {
-    const mins = Math.floor(restTime / 60).toString().padStart(2, "0");
-    const secs = (restTime % 60).toString().padStart(2, "0");
-    minutes.textContent = mins;
-    seconds.textContent = secs;
-}
-
-function resetTimerColors() {
-    cards.forEach(card => {
+function resetColors() {
+    timerCards.forEach(card => {
         card.style.backgroundColor = '#ffffff';
         card.style.color = '#000000';
     });
 }
 
 function setWarningColors() {
-    cards.forEach(card => {
-        card.style.backgroundColor = '#ff0000b8';
+    timerCards.forEach(card => {
+        card.style.backgroundColor = '#ff4b2b';
         card.style.color = '#ffffff';
     });
 }
 
 function startTimer() {
     if (state === TimerState.RUNNING || state === TimerState.BREAK) return;
-    
-    if (state === TimerState.PAUSED) {
-        // Resume from paused state
-        state = TimerState.RUNNING;
-    } else {
-        // Start fresh timer
-        state = TimerState.RUNNING;
-        leftTime = finalleftTime;
-    }
-    
+
+    state = TimerState.RUNNING;
     activity.textContent = "Work";
     activity.style.color = 'green';
-    
+
     clearInterval(interval);
     interval = setInterval(() => {
-        leftTime--;
-        updateDisplay();
-        
-        if (leftTime <= 180) { // 3 minutes warning
+        timeLeft--;
+        updateDisplay(timeLeft);
+
+        if (timeLeft <= 180) {
             setWarningColors();
         }
-        
-        if (leftTime <= 0) {
+
+        if (timeLeft <= 0) {
             clearInterval(interval);
             timerSound.play();
             startBreak();
@@ -100,19 +80,19 @@ function startBreak() {
     state = TimerState.BREAK;
     activity.textContent = "Break Time!";
     activity.style.color = 'red';
-    restTime = 300; // 5 minutes break
-    
-    clearInterval(restInterval);
-    restInterval = setInterval(() => {
-        restTime--;
-        updateBreakDisplay();
-        
-        if (restTime <= 60) { // 1 minute warning
+    timeLeft = breakDuration;
+    resetColors();
+
+    interval = setInterval(() => {
+        timeLeft--;
+        updateDisplay(timeLeft);
+
+        if (timeLeft <= 60) {
             setWarningColors();
         }
-        
-        if (restTime <= 0) {
-            clearInterval(restInterval);
+
+        if (timeLeft <= 0) {
+            clearInterval(interval);
             breakSound.play();
             resetTimer();
         }
@@ -120,31 +100,26 @@ function startBreak() {
 }
 
 function stopTimer() {
-    if (state === TimerState.STOPPED || state === TimerState.BREAK) return;
-    
-    clearInterval(interval);
-    state = TimerState.PAUSED;
-    activity.textContent = "Paused";
-    activity.style.color = 'orange';
+    if (state === TimerState.RUNNING || state === TimerState.BREAK) {
+        clearInterval(interval);
+        state = TimerState.PAUSED;
+        activity.textContent = "Paused";
+        activity.style.color = 'orange';
+    }
 }
 
 function resetTimer() {
     clearInterval(interval);
-    clearInterval(restInterval);
-    
     state = TimerState.STOPPED;
-    leftTime = finalleftTime;
-    updateDisplay();
-    resetTimerColors();
-    
+    timeLeft = workDuration;
+    updateDisplay(timeLeft);
+    resetColors();
     activity.textContent = "---";
     activity.style.color = 'white';
 }
 
-// Event listeners
-start.addEventListener('click', startTimer);
-stop.addEventListener('click', stopTimer);
-reset.addEventListener('click', resetTimer);
+startBtn.addEventListener('click', startTimer);
+stopBtn.addEventListener('click', stopTimer);
+resetBtn.addEventListener('click', resetTimer);
 
-// Initialize
-updateDisplay();
+updateDisplay(timeLeft);
