@@ -1,156 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 * {
-    font-family: 'Ubuntu', sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    background: black;
-    color: white;
-    min-height: 100vh;
+  background: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main {
-    height: 100vh;
-    padding: 50px auto;
-}
-
-h2 {
-    scale: 1.4;
+  width: 100%;
+  padding: 20px;
 }
 
 .container {
-    width: 90%;
-    max-width: 1100px;
-    height: 60%;
-    color: white;
-    text-align: center;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
 }
 
-.container h1 {
-    font-size: 55px;
-    position: relative;
-    margin-bottom: 20px;
-    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.container.flex {
-    flex-direction: column;
-    gap: 40px;
-}
-
-.controls.flex {
-    gap: 25px;
-    width: 80%;
-    flex-wrap: wrap;
-}
-
-.controls {
-    margin-top: 30px;
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .timer {
-    padding: auto 20px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.timer.flex {
-    gap: 30px;
+.card {
+  background: white;
+  color: black;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colon {
+  font-size: 60px;
+  font-weight: bold;
 }
 
 button {
-    border: none;
-    color: white;
-    font-size: 20px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 15px 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+#start { background: #28a745; }
+#stop { background: #dc3545; }
+#reset { background: #6c757d; }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-#start {
-    background: linear-gradient(135deg, #00b09b, #96c93d);
-}
-
-#stop {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-}
-
-#reset {
-    background: linear-gradient(135deg, #757f9a, #d7dde8);
-    color: #333;
-}
-
-.time-selector.flex {
-    gap: 20px;
-    align-items: center;
+  opacity: 0.85;
 }
 
 .time-selector select {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 15px;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.time-selector select:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-.time-selector select:focus {
-    outline: none;
-    border-color: #4facfe;
-    box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.3);
-}
-
-.activity {
-    scale: 1.2;
-    font-weight: 500;
-    margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 6px;
 }
 
 @media (max-width: 600px) {
-    .container h1 {
-        font-size: 40px;
-    }
-    
-    .timer .card {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .timer.flex {
-        gap: 15px;
-    }
-    
-    button {
-        padding: 12px 20px;
-        font-size: 16px;
-    }
-    
-    .time-selector.flex {
-        flex-direction: column;
-    }
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .colon {
+    font-size: 40px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
 }
